@@ -1,7 +1,14 @@
-https://man7.org/training/download/lusp_fileio_slides-mkerrisk-man7.org.pdf
+# file descriptors tabels :
+
+-- https://man7.org/training/download/lusp_fileio_slides-mkerrisk-man7.org.pdf
+-- https://www.usna.edu/Users/cs/wcbrown/courses/IC221/classes/L09/Class.html
 
 
-https://www.usna.edu/Users/cs/wcbrown/courses/IC221/classes/L09/Class.html
+# how process implemented on OS :
+
+https://www.mat.unical.it/spataro/teaching/algoritmi/Linux-processes.pdf
+
+# file descripter :
 
 https://bottomupcs.com/ch01s03.html
 
