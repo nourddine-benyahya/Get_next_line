@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbenyahy <nbenyahy@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 16:54:51 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/01/17 11:37:20 by nbenyahy         ###   ########.fr       */
+/*   Created: 2024/01/10 10:27:10 by nbenyahy          #+#    #+#             */
+/*   Updated: 2024/01/17 14:59:49 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*helper;
+	static char	*helper[OPEN_MAX];
 	char		*ptr;
 
 	ptr = (char *)malloc(1);
 	if (!ptr || fd < 0 || BUFFER_SIZE >= INT_MAX
 		|| BUFFER_SIZE < 1 || read(fd, ptr, 0) < 0)
-		return (ft_gnl_free(&helper, &ptr));
+		return (ft_gnl_bonus_free(&helper[fd], &ptr));
 	ptr[0] = '\0';
-	ptr = ft_gnl_join(ptr, helper);
-	helper = ft_gnl_change_reminder(helper);
-	if (!ptr || !helper)
-		return (ft_gnl_free(&helper, &ptr));
-	while (!ft_gnl_strchr(ptr, '\n') && read(fd, helper, BUFFER_SIZE))
+	ptr = ft_gnl_bonus_join(ptr, helper[fd]);
+	helper[fd] = ft_gnl_bonus_change_reminder(helper[fd]);
+	if (!ptr || !helper[fd])
+		return (ft_gnl_bonus_free(&helper[fd], &ptr));
+	while (!ft_gnl_bonus_strchr(ptr, '\n') && read(fd, helper[fd], BUFFER_SIZE))
 	{
-		ptr = ft_gnl_join(ptr, helper);
-		helper = ft_gnl_change_reminder(helper);
-		if (!ptr || !helper)
-			return (ft_gnl_free(&helper, &ptr));
+		ptr = ft_gnl_bonus_join(ptr, helper[fd]);
+		helper[fd] = ft_gnl_bonus_change_reminder(helper[fd]);
+		if (!ptr || !helper[fd])
+			return (ft_gnl_bonus_free(&helper[fd], &ptr));
 	}
 	if (ptr[0] == '\0')
-		return (ft_gnl_free(&helper, &ptr));
+		return (ft_gnl_bonus_free(&helper[fd], &ptr));
 	return (ptr);
 }

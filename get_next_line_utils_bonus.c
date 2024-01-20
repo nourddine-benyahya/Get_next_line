@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbenyahy <nbenyahy@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 21:13:46 by nbenyahy          #+#    #+#             */
-/*   Updated: 2024/01/17 11:58:02 by nbenyahy         ###   ########.fr       */
+/*   Created: 2024/01/10 10:28:33 by nbenyahy          #+#    #+#             */
+/*   Updated: 2024/01/10 16:12:12 by nbenyahy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-size_t	ft_gnl_strlen(char *ptr, char sep)
+size_t	ft_gnl_bonus_strlen(char *ptr, char sep)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_gnl_strlen(char *ptr, char sep)
 	return (i);
 }
 
-char	*ft_gnl_strchr(const char *p, char ch)
+char	*ft_gnl_bonus_strchr(const char *p, char ch)
 {
 	while (*p != '\0')
 	{
@@ -35,7 +35,7 @@ char	*ft_gnl_strchr(const char *p, char ch)
 	return (NULL);
 }
 
-char	*ft_gnl_change_reminder(char *helper)
+char	*ft_gnl_bonus_change_reminder(char *helper)
 {
 	char	*ptr;
 	size_t	i;
@@ -57,7 +57,7 @@ char	*ft_gnl_change_reminder(char *helper)
 	return (free(helper), ptr);
 }
 
-char	*ft_gnl_join(char *ptr, char *helper)
+char	*ft_gnl_bonus_join(char *ptr, char *helper)
 {
 	char	*newptr;
 	int		i;
@@ -65,8 +65,8 @@ char	*ft_gnl_join(char *ptr, char *helper)
 
 	if (!ptr && !helper)
 		return (NULL);
-	ptrlen = ft_gnl_strlen(ptr, '\0');
-	newptr = (char *)malloc(ptrlen + ft_gnl_strlen(helper, '\n') + 1);
+	ptrlen = ft_gnl_bonus_strlen(ptr, '\0');
+	newptr = (char *)malloc(ptrlen + ft_gnl_bonus_strlen(helper, '\n') + 1);
 	if (!newptr)
 		return (free(ptr), NULL);
 	i = -1;
@@ -81,7 +81,7 @@ char	*ft_gnl_join(char *ptr, char *helper)
 	return (free(ptr), newptr);
 }
 
-char	*ft_gnl_free(char **ptr1, char **ptr2)
+char	*ft_gnl_bonus_free(char **ptr1, char **ptr2)
 {
 	if (ptr1)
 	{
