@@ -49,9 +49,8 @@ This project, part of the 42 school curriculum, delves into file reading and buf
 
 ## Usage
 
-Include the header:
-
 ```
+// Include the header get_next_line.h for mondatory part or get_next_line_bonus.h for bonus
 #include "get_next_line.h"
 
 char *line = NULL;
