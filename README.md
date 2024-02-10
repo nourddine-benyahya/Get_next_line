@@ -17,7 +17,7 @@ A file descriptor represents an open file. It is a unique number assigned by the
 
 The diagram below shows the layered architecture in Linux filesystem. Let’s take process 1234 as an example.
 
-IMAGE
+![Alt text](87f55e76-5850-4d8c-a11e-4191fc30833c_2883x3273.png)
 
 🔹 In User Space
 When we open a file called “fileA.txt” in Process 1234, we get file descriptor fd1, which is equal to 3. We can then pass the file descriptor to other functions to write data to the file.
