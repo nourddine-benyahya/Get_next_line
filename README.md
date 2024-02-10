@@ -10,6 +10,34 @@ This project, part of the 42 school curriculum, delves into file reading and buf
 
 ### File Descriptors:
 
+#### What is a File Descriptor?
+How do we interact with Linux Filesystem via file descriptors?
+
+A file descriptor represents an open file. It is a unique number assigned by the operating system to each file. It is an abstraction for working with files. We need to use file descriptors to read from or write to files in our program. Each process maintains its own file descriptor table. 
+
+The diagram below shows the layered architecture in Linux filesystem. Let’s take process 1234 as an example.
+
+IMAGE
+
+🔹 In User Space
+When we open a file called “fileA.txt” in Process 1234, we get file descriptor fd1, which is equal to 3. We can then pass the file descriptor to other functions to write data to the file.
+
+🔹 In Kernel Space
+In Linux kernel, there is a process table to maintain the data for the processes. Each process has an entry in the table. Each process maintains a file descriptor table, with file descriptors as its indices. Notice that file descriptors 0,1 and 2 are reserved in each file descriptor table to represent stdin, stdout, and stderr.
+
+The file pointer points to an entry in the open file table, which has information about open files across all processes. Multiple file descriptors can point to the same file table entry. For example, file descriptor 0, 1 and 2 points to the same open file table entry. 
+
+Since different open file table entries can represent the same file, it is a waste of resources to store the file static information so many times. We need another abstraction layer called ‘vnode table’ to store the static data.
+
+In each file table entry, there is a vnode pointer, which points to an entry in vnode table. The static information includes file type, function pointers, reference counts, inode etc. inode describes a physical object in the filesystem.
+
+🔹 In Filesystem
+The inode array element stores the actual file information, including permission mode, owners, timestamps, etc. inode also points to the data blocks stored in the filesystem.
+
+Over to you: When we close a file in a program, do you know which entries are deleted in these data structures?
+
+
+
 - Unique integers that represent open files or other I/O resources.
 - Used for reading, writing, and manipulating data within files.
 - Explore more:
